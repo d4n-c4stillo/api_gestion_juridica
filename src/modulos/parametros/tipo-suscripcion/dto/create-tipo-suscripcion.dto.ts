@@ -9,16 +9,21 @@ import {
     IsString,
   } from 'class-validator';
 
+  import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateTipoSuscripcionDto {
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     descripcion: string;
 
+    @ApiProperty()
     @IsNumber()
     validezDias: number;
 
-    @ IsBoolean()
+    @ApiProperty()
+    @IsBoolean()
     activo: boolean;
 
 

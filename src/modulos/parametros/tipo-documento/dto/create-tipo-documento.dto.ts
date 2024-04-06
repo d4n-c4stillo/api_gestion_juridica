@@ -8,17 +8,22 @@ import {
     IsString,
   } from 'class-validator';
 
+  import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateTipoDocumentoDto {
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     descripcion: string;
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     codigo: string;
 
-    @ IsBoolean()
+    @ApiProperty()
+    @IsBoolean()
     activo: boolean;
 
 }

@@ -9,17 +9,22 @@ import {
     IsString,
   } from 'class-validator';
 
+  import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateTipoAreaJuridicaDto {
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     descripcion: string;
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     nombre: string;
 
-    @ IsBoolean()
+    @ApiProperty()
+    @IsBoolean()
     activo: boolean;
 
 
