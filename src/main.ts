@@ -73,7 +73,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   //await app.listen(configService.get('APP_PORT'));
-  await app.listen(configService.get('APP_PORT'),'0.0.0.0');
+  await app.listen(3000);
   console.log('init at port 3000 !!');
 }
 bootstrap();
