@@ -11,5 +11,6 @@ import { RespuestaGenericaService } from "../../../shared/respuesta.service";
   imports:[ TypeOrmModule.forFeature([TipoMembresia]),],
   controllers: [TipoMembresiaController],
   providers: [TipoMembresiaService, RespuestaGenericaService],
+  exports: [RespuestaGenericaService]
 })
 export class TipoMembresiaModule {}

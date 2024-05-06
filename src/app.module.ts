@@ -13,6 +13,7 @@ import { TipoMembresiaModule } from './modulos/parametros/tipo-membresia/tipo-me
 import { TipoDocumentoModule } from './modulos/parametros/tipo-documento/tipo-documento.module';
 import { TipoAreaJuridicaModule } from './modulos/parametros/tipo-area-juridica/tipo-area-juridica.module';
 import { PersonaModule } from './modulos/persona/persona.module';
+import { MembresiaModule } from './modulos/membresia/membresia.module';
 
 @Module({
   imports: [
@@ -28,6 +29,13 @@ import { PersonaModule } from './modulos/persona/persona.module';
         type: 'postgres',
         entities: [__dirname + '/**/*{.ts,.js}'],
         url: configService.get('POSTGRES_URL'),
+      
+        /*host: 'oregon-postgres.render.com',
+        port: 5432,
+        password: 'E54A8eCyVcQcpdRCns2z66uSRAhYGt1y',
+        username: 'test_api_db3_user',      
+        database: 'test_api_db3',*/
+
         synchronize: false,
         dropSchema: false,
       }),
@@ -40,6 +48,7 @@ import { PersonaModule } from './modulos/persona/persona.module';
     TipoDocumentoModule,
     TipoAreaJuridicaModule,
     PersonaModule,
+    MembresiaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
