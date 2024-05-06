@@ -28,7 +28,7 @@ import { MembresiaModule } from './modulos/membresia/membresia.module';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         entities: [__dirname + '/**/*{.ts,.js}'],
-        url: configService.get('POSTGRES_URL'),
+        url: 'postgres://test_api_db3_user:E54A8eCyVcQcpdRCns2z66uSRAhYGt1y@dpg-corge4i1hbls73f5dkp0-a/test_api_db3', //configService.get('POSTGRES_URL'),
       
         /*host: 'oregon-postgres.render.com',
         port: 5432,
