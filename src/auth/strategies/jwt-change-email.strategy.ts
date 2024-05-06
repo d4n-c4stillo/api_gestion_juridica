@@ -20,7 +20,7 @@ export class JwtChangeEmailStrategy extends PassportStrategy(
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get('JWT_CHANGE_EMAIL_TOKEN_SECRET'),
+      secretOrKey: 'KEY_SECRET' // configService.get('JWT_CHANGE_EMAIL_TOKEN_SECRET'),
     });
   }
 
