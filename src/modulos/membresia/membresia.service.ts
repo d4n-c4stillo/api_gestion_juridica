@@ -145,7 +145,7 @@ export class MembresiaService {
   async remove(id: number) {
     console.log(`This action removes a #${id} membresia`);
 
-    //TODO: Validar si existen registros
+    //TODO: Validar si existen registros test
 
     const result = await this.membresiaRepository
       .createQueryBuilder()
