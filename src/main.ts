@@ -18,6 +18,7 @@ import { TipoDocumentoModule } from './modulos/parametros/tipo-documento/tipo-do
 import { TipoAreaJuridicaModule } from './modulos/parametros/tipo-area-juridica/tipo-area-juridica.module';
 import { PersonaModule } from './modulos/persona/persona.module';
 import { MembresiaModule } from './modulos/membresia/membresia.module';
+import { ArchivosModule } from './modulos/archivos/archivos.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -54,7 +55,8 @@ async function bootstrap() {
       TipoDocumentoModule,
       TipoAreaJuridicaModule,
       PersonaModule,
-      MembresiaModule
+      MembresiaModule,
+      ArchivosModule
     ],
   });
   SwaggerModule.setup('api/docs', app, document);

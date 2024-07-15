@@ -215,7 +215,7 @@ export class PersonaService {
       throw new HttpException(
         {
           status: HttpStatus.CONFLICT,
-          error: `Error actualizacion de Tipo Documento: ${error.message}`,
+          error: `Error actualizacion de Persona: ${error.message}`,
         },
         HttpStatus.ACCEPTED,
         {

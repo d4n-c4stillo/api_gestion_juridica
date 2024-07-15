@@ -14,6 +14,8 @@ import { TipoDocumentoModule } from './modulos/parametros/tipo-documento/tipo-do
 import { TipoAreaJuridicaModule } from './modulos/parametros/tipo-area-juridica/tipo-area-juridica.module';
 import { PersonaModule } from './modulos/persona/persona.module';
 import { MembresiaModule } from './modulos/membresia/membresia.module';
+import { CalendarioModule } from './modulos/calendario/calendario.module';
+import { ArchivosModule } from './modulos/archivos/archivos.module';
 
 @Module({
   imports: [
@@ -49,6 +51,8 @@ import { MembresiaModule } from './modulos/membresia/membresia.module';
     TipoAreaJuridicaModule,
     PersonaModule,
     MembresiaModule,
+    CalendarioModule,
+    ArchivosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

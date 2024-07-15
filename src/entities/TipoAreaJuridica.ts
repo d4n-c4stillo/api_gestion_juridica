@@ -24,6 +24,6 @@ export class TipoAreaJuridica {
   @Column("character varying", { name: "descripcion" })
   descripcion: string;
 
-  @Column("boolean", { name: "estado", default: () => "true" })
+  @Column("boolean", { name: "activo", default: () => "true" })
   activo: boolean;
 }
