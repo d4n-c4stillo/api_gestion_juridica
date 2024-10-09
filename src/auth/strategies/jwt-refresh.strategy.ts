@@ -25,7 +25,7 @@ export class JwtRefreshStrategy extends PassportStrategy(
     });
   }
 
-  async validate(
+  /*async validate(
     req: Request,
     { id }: IAuthUser,
   ): Promise<IAuthUserRefreshToken> {
@@ -36,5 +36,5 @@ export class JwtRefreshStrategy extends PassportStrategy(
 
     const refreshToken = req.get('Authorization').replace('Bearer', '').trim();
     return { ...user, refreshToken };
-  }
+  }*/
 }

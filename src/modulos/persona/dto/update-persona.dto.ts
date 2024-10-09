@@ -54,8 +54,7 @@ export class UpdatePersonaDto{
     @IsString()
     emailPersonal: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty()  
     @IsString()    
     emailCorporativo: string;
 
@@ -70,7 +69,6 @@ export class UpdatePersonaDto{
     profesion: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     @IsString()
     direccionProcesal: string;
 
@@ -79,14 +77,23 @@ export class UpdatePersonaDto{
     @IsString()
     direccionPersonal: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty()   
     @IsString()
     buffetConsultorio: string;
 
     @ApiProperty()
     @IsString()
     fotoUrl: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
+    personaTipoId: number;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
+    clienteTipoId: number;
 
 
 

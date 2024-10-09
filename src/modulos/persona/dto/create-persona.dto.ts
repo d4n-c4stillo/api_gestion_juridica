@@ -37,8 +37,7 @@ export class CreatePersonaDto {
     @IsString()
     nroDocumento: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty() 
     @IsString()
     fechaNacimiento: string;
 
@@ -52,8 +51,7 @@ export class CreatePersonaDto {
     @IsString()
     emailPersonal: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty()   
     @IsString()    
     emailCorporativo: string;
 
@@ -67,8 +65,7 @@ export class CreatePersonaDto {
     @IsString()
     profesion: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty()   
     @IsString()
     direccionProcesal: string;
 
@@ -77,14 +74,24 @@ export class CreatePersonaDto {
     @IsString()
     direccionPersonal: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiProperty()  
     @IsString()
     buffetConsultorio: string;
 
     @ApiProperty()
     @IsString()
     fotoUrl: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
+    personaTipoId: number;
+
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
+    clienteTipoId: number;
 
 
 }

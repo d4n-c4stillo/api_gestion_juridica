@@ -19,11 +19,21 @@ import { TipoAreaJuridicaModule } from './modulos/parametros/tipo-area-juridica/
 import { PersonaModule } from './modulos/persona/persona.module';
 import { MembresiaModule } from './modulos/membresia/membresia.module';
 import { ArchivosModule } from './modulos/archivos/archivos.module';
+import { ContactosModule } from './modulos/contactos/contactos.module';
+import { ExpedienteModule } from './modulos/expediente/expediente.module';
+
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   
-  app.enableCors();
+  app.enableCors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  });
+
+
   app.useStaticAssets(resolve('./public'));
   app.setBaseViewsDir(resolve('./views'));
   app.setViewEngine('hbs');
@@ -56,7 +66,9 @@ async function bootstrap() {
       TipoAreaJuridicaModule,
       PersonaModule,
       MembresiaModule,
-      ArchivosModule
+      ArchivosModule,
+      ContactosModule,
+      ExpedienteModule
     ],
   });
   SwaggerModule.setup('api/docs', app, document);
@@ -75,7 +87,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   //await app.listen(configService.get('APP_PORT'));
-  await app.listen(3000);
-  console.log('init at port 3000 !!');
+  await app.listen(4000);
+  console.log('init at port 4000 !!');
 }
 bootstrap();

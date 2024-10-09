@@ -30,6 +30,14 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+
+  @Post('/login')
+  async login(@Req() req: Request) {
+    console.log('login:', req.body);
+    return await this.authService.login(req.body);
+  }
+
+/*
   @Get('/restore-password')
   @Render('restore-password')
   renderRestorePassword(@Query('token') token: string) {
@@ -93,5 +101,5 @@ export class AuthController {
     @Body() changeEmailPasswordDTO: ChangeEmailPasswordDTO,
   ) {
     return this.authService.handleEmailUpdate(user.id, changeEmailPasswordDTO);
-  }
+  }*/
 }

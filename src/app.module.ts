@@ -16,6 +16,8 @@ import { PersonaModule } from './modulos/persona/persona.module';
 import { MembresiaModule } from './modulos/membresia/membresia.module';
 import { CalendarioModule } from './modulos/calendario/calendario.module';
 import { ArchivosModule } from './modulos/archivos/archivos.module';
+import { ContactosModule } from './modulos/contactos/contactos.module';
+import { ExpedienteModule } from './modulos/expediente/expediente.module';
 
 @Module({
   imports: [
@@ -30,7 +32,8 @@ import { ArchivosModule } from './modulos/archivos/archivos.module';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         entities: [__dirname + '/**/*{.ts,.js}'],
-        url: 'postgresql://test_api_db3_user:E54A8eCyVcQcpdRCns2z66uSRAhYGt1y@dpg-corge4i1hbls73f5dkp0-a/test_api_db3', //configService.get('POSTGRES_URL'),
+        //url: 'postgresql://test_api_db3_user:E54A8eCyVcQcpdRCns2z66uSRAhYGt1y@dpg-corge4i1hbls73f5dkp0-a/test_api_db3', //configService.get('POSTGRES_URL'),
+        url: configService.get('POSTGRES_URL'),
       
         /*host: 'oregon-postgres.render.com',
         port: 5432,
@@ -53,6 +56,8 @@ import { ArchivosModule } from './modulos/archivos/archivos.module';
     MembresiaModule,
     CalendarioModule,
     ArchivosModule,
+    ContactosModule,
+    ExpedienteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

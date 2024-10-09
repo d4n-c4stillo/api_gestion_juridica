@@ -50,9 +50,20 @@ export class PersonaController {
     return this.personaService.create(createPersonaDto);
   }
 
+  //para clientes
   @Get()
   findAll() {
     return this.personaService.findAll();
+  }
+
+  @Get('/abogados')
+  findAllAbogados() {
+    return this.personaService.findAllAbogados();
+  }
+
+  @Get('/usuarios')
+  findAllUsuarios() {
+    return this.personaService.findAllUsuarios();
   }
 
   @Get(':id')

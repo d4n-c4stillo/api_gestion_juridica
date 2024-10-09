@@ -14,7 +14,7 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     });
   }
 
-  async validate(email: string, password: string): Promise<IAuthUser> {
+  /*async validate(email: string, password: string): Promise<IAuthUser> {
     const user = await this.authService.validateUserEmailPassword(
       email,
       password,
@@ -23,5 +23,5 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
       throw new ForbiddenException('User not valid');
     }
     return user;
-  }
+  }*/
 }

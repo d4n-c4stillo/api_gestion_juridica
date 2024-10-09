@@ -66,11 +66,11 @@ export class Persona {
   @Column("character varying", { name: "reservado1", nullable: true })
   reservado1: string | null;
 
-  @Column("character varying", { name: "reservado2", nullable: true })
-  reservado2: string | null;
+  @Column("integer", { name: "cliente_tipo_id", nullable: true })
+  clienteTipoId: number | null;
 
-  @Column("character varying", { name: "reservado3", nullable: true })
-  reservado3: string | null;
+  @Column("integer", { name: "persona_tipo_id", nullable: true })
+  personaTipoId: number | null;
 
   @Column("integer", { name: "create_user_id", nullable: true })
   createUserId: number | null;

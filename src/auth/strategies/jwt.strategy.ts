@@ -20,12 +20,12 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  async validate({ id }: IAuthUser) {
+  /*async validate({ id }: IAuthUser) {
     const user = await this.authService.validateUserById(id);
     if (!user) {
       throw new ForbiddenException('User not valid');
     }
 
     return user;
-  }
+  }*/
 }

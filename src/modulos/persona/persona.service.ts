@@ -46,7 +46,10 @@ export class PersonaService {
             profesion: dto.profesion,
             direccionProcesal: dto.direccionProcesal,
             direccionPersonal: dto.direccionPersonal,
-            buffetConsultorio: dto.buffetConsultorio
+            buffetConsultorio: dto.buffetConsultorio,
+            personaTipoId: dto.personaTipoId,
+            clienteTipoId: dto.clienteTipoId
+           
 
           },
         ])
@@ -78,7 +81,7 @@ export class PersonaService {
   }
 
   async findAll() {
-    console.log(`This action returns all persona`);
+    console.log(`This action returns all persona - clientes`);
 
     const result = await this.personaRepository.query(`
 
@@ -104,12 +107,90 @@ export class PersonaService {
     public.persona.direccion_procesal,
     public.persona.direccion_personal,
     public.persona.buffet_consultorio,
-    public.persona.foto_url
+    public.persona.foto_url,
+    public.persona.cliente_tipo_id,
+    public.persona.persona_tipo_id
   FROM
     public.persona
     INNER JOIN public.tipo_nacionalidad ON (public.persona.tipo_nacionalidad_id = public.tipo_nacionalidad.id)
     INNER JOIN public.tipo_documento ON (public.persona.tipo_documento_id = public.tipo_documento.id)
-  
+   where public.persona.persona_tipo_id = 1
+    
+    `);
+
+    return this._serviceResp.respuestaHttp200(
+      result,
+      "Registro Encontrado !!",
+      ""
+    );
+
+
+  }
+
+  async findAllAbogados() {
+    console.log(`This action returns all abogados`);
+
+    const result = await this.personaRepository.query(`
+
+    SELECT 
+    public.persona.id,
+    public.persona."updatedAt",
+    public.persona."createdAt",
+    public.persona.paterno,
+    public.persona.materno,
+    public.persona.nombres,
+    public.persona.tipo_documento_id,
+    public.tipo_documento.descripcion as tipo_documento,
+    public.tipo_documento.codigo as tipo_documento_codigo,
+    public.persona.nro_documento,
+    public.persona.fecha_nacimiento,
+    public.persona.tipo_nacionalidad_id,
+    public.tipo_nacionalidad.descripcion as tipo_nacionalidad,
+    public.tipo_nacionalidad.codigo as tipo_nacionalidad_codigo,
+    public.persona.email_personal,
+    public.persona.email_corporativo,
+    public.persona.celular,
+    public.persona.profesion,
+    public.persona.direccion_procesal,
+    public.persona.direccion_personal,
+    public.persona.buffet_consultorio,
+    public.persona.foto_url,
+    public.persona.cliente_tipo_id,
+    public.persona.persona_tipo_id
+  FROM
+    public.persona
+    INNER JOIN public.tipo_nacionalidad ON (public.persona.tipo_nacionalidad_id = public.tipo_nacionalidad.id)
+    INNER JOIN public.tipo_documento ON (public.persona.tipo_documento_id = public.tipo_documento.id)
+   where public.persona.persona_tipo_id = 2 
+    `);
+
+    return this._serviceResp.respuestaHttp200(
+      result,
+      "Registro Encontrado !!",
+      ""
+    );
+
+
+  }
+
+  async findAllUsuarios() {
+    console.log(`This action returns all usuarios`);
+
+    const result = await this.personaRepository.query(`
+
+        SELECT
+        users.email,
+        users.password,
+        users."isActive" as activo,
+        persona.paterno,
+        persona.materno,
+        persona.nombres,
+        persona.cliente_tipo_id,
+        persona.persona_tipo_id,
+        users.rol_id 
+      FROM
+        users
+        INNER JOIN persona ON users.persona_id = persona.id
     
     `);
 
