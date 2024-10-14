@@ -91,6 +91,27 @@ export class ExpedienteService {
 
   }
 
+  async removeExpediente(id: number) {
+    console.log(`This action removes a #${id} expediente`);
+
+    const result = await this.expedienteoRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Expediente)
+      .where("id = :id", { id })
+      .execute();
+
+    if (result.affected === 0) {
+      throw new NotFoundException("registro no encontrado !");
+    }
+
+    return this._serviceResp.respuestaHttp203(
+      result,
+      "Registro Eliminado !!",
+      ""
+    );
+  }
+
   async findAll() {
     console.log(`This action returns all expediente`);
 
@@ -215,8 +236,49 @@ export class ExpedienteService {
 
   }
 
-  update(id: number, updateExpedienteDto: UpdateExpedienteDto) {
-    return `This action updates a #${id} expediente`;
+  async update(id: number, dto: UpdateExpedienteDto) {
+    console.log(`This action updates a #${id} expediente`);
+
+    const data = await this.expedientePersonaRepository
+      .createQueryBuilder()
+      .update(Expediente)
+      .set({
+
+       nombreCorto: dto.nombreCorto,
+       descripcion: dto.descripcion,
+       codigoCud: dto.codigoCud,
+       codigoNurej: dto.codigoNurej,
+       
+      })
+      .where("id = :id", { id: id })
+      .execute();
+
+      return this._serviceResp.respuestaHttp201(
+        data,
+        "Registro Actualizado !!",
+        ""
+    );
+
+  }
+
+  async cierraExpediente(id: number) {
+    console.log(`This action CIERRA a #${id} expediente`);
+
+    const data = await this.expedienteoRepository
+      .createQueryBuilder()
+      .update(Expediente)
+      .set({
+        abierto: false
+      })
+      .where("id = :id", { id: id })
+      .execute();
+
+      return this._serviceResp.respuestaHttp201(
+        data,
+        "Registro Actualizado !!",
+        ""
+    );
+
   }
 
   remove(id: number) {
@@ -473,8 +535,13 @@ export class ExpedienteService {
     console.log('This action adds a new expediente seguimiento');    
     console.log('dto -->', dto);
 
-    dto.proximaFechaRespuesta = '10/10/2024';
-
+    
+    dto.proximaFechaRespuesta = '15/10/2024';
+    
+    const fechaYMD = dto.fecha.split("/").reverse().join("-");
+    //const fechaYMD = dto.fecha.substring(11, 4) + '-' + dto.fecha.substring(3, 2) + '-' + dto.fecha.substring(0, 2) ;
+    console.log('fechaYMD ->', fechaYMD);
+       
     try {
 
       const res = await this.expedienteSeguimientoRepository
@@ -485,7 +552,7 @@ export class ExpedienteService {
           {
             
           expedienteId: dto.expedienteId,
-          fecha: dto.fecha,
+          fecha: fechaYMD, //dto.fecha,
           accionSeguimientoTipoId: dto.accionSeguimientoTipoId,
           observacion: dto.observacion,
           descripcion: dto.descripcion,
@@ -619,6 +686,45 @@ export class ExpedienteService {
         success: false,
       };
     }
+  }
+
+  async getAlProvinciasByDeptoId(id){
+   
+    console.log(`This action returns all provs by depto id`);
+
+    const result = await this.expedienteoRepository.query(`
+
+        SELECT id, upper(lugar) as nombre  from provincia where depto_id = ${id}  order by 2       
+
+      `);
+
+
+    return this._serviceResp.respuestaHttp200(
+      result,
+      "Registro Encontrado !!",
+      ""
+    );
+
+  }
+
+  async getAllJuzgadosByProvId(id){
+   
+    console.log(`This action returns all juzgados by prov id`);
+
+    const result = await this.expedienteoRepository.query(`
+
+        SELECT id, provincia_id, numero, oficina as nombre, ubicacion, materia, notificacion_dia1, notificacion_hora1, notificacion_dia2, notificacion_hora2         
+        from juzgado where provincia_id = ${id}  order by oficina     
+
+      `);
+
+
+    return this._serviceResp.respuestaHttp200(
+      result,
+      "Registro Encontrado !!",
+      ""
+    );
+
   }
 
 

@@ -37,6 +37,7 @@ export class CalendarioService {
     `);
 
     return this._serviceResp.respuestaHttp200(
+      
       result,
       "Registro Encontrado !!",
       ""
@@ -49,6 +50,7 @@ export class CalendarioService {
   }
 
   update(id: number, updateCalendarioDto: UpdateCalendarioDto) {
+    console.log('id', id);
     return `This action updates a #${id} calendario`;
   }
 

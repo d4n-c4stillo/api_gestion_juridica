@@ -27,6 +27,9 @@ export class Expediente {
   @Column("character varying", { name: "descripcion" })
   descripcion: string;
 
+  @Column("boolean", { name: "abierto" })
+  abierto: boolean;
+
 
   //TODO: aumentar usuario_id
 

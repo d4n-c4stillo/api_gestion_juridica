@@ -58,6 +58,17 @@ export class ExpedienteController {
     return this.expedienteService.create(createExpedienteDto);
   }
 
+  @Delete(':id')
+  deleteExpediente(@Param('id') id: string) {
+    return this.expedienteService.removeExpediente(+id);
+  }
+
+  
+  @Put('/cerrar/:id')
+  cerrarExpediente(@Param('id') id: string) {
+    return this.expedienteService.cierraExpediente(+id);
+  }
+
   @Get()
   findAll() {
     return this.expedienteService.findAll();
@@ -119,7 +130,7 @@ export class ExpedienteController {
     return this.expedienteService.removeSeguimiento(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateExpedienteDto: UpdateExpedienteDto) {
     return this.expedienteService.update(+id, updateExpedienteDto);
   }
@@ -133,4 +144,20 @@ export class ExpedienteController {
   remove(@Param('id') id: string) {
     return this.expedienteService.remove(+id);
   }
+
+  //departamentos
+
+  @Get('/provsByDeptoId/:id')
+  getAlProvinciasByDeptoId(@Param('id') id: string) {
+    return this.expedienteService.getAlProvinciasByDeptoId(+id);
+  }
+
+  //juzgados
+  
+  @Get('/juzgadosByProvId/:id')
+  getAllJuzgadosByProvId(@Param('id') id: string) {
+    return this.expedienteService.getAllJuzgadosByProvId(+id);
+  }
+
+
 }
