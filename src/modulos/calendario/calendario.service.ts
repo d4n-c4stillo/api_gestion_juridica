@@ -30,11 +30,13 @@ export class CalendarioService {
     const result = await this.calendarRepository.query(`
 
     SELECT 
-    *
-  FROM
-      public.calendar
+    *, class as "className" 
+    FROM 
+      public.calendario
     
     `);
+
+
 
     return this._serviceResp.respuestaHttp200(
       
